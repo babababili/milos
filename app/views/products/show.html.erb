@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Product -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Product %></h1>
+</div>
 
-<p>
-  <strong>Asin:</strong>
-  <%= @product.asin %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:asin) %></dt>
+      <dd><pre class="prettyprint"><%= @product.asin %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:description) %></dt>
+      <dd><pre class="prettyprint"><%= @product.description %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:price) %></dt>
+      <dd><pre class="prettyprint"><%= @product.price %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:ship_price) %></dt>
+      <dd><pre class="prettyprint"><%= @product.ship_price %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:rank) %></dt>
+      <dd><pre class="prettyprint"><%= @product.rank %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              products_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_product_path(@product), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              product_path(@product),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Ship price:</strong>
-  <%= @product.ship_price %>
-</p>
-
-<p>
-  <strong>Rank:</strong>
-  <%= @product.rank %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
